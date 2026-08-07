@@ -1,15 +1,18 @@
 import SideBar from "./components/SideBar"
+import MobileSideBar from "./components/MobileSideBar"
 
 function PanelLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="flex min-h-screen">
-            <aside className="w-64 border-r">
+       <div className="flex">
+            <div className="hidden md:block">
                 <SideBar />
-            </aside>
+            </div>
             <main className="flex-1">
+                <div className="flex items-center gap-4 p-4 md:hidden">
+                    <MobileSideBar />
+                </div>
                 {children}
             </main>
-
         </div>
     )
 }

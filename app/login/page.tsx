@@ -46,7 +46,7 @@ export default function LoginPage() {
                                 })
                             }
                             className="w-full flex items-center justify-center gap-3 rounded-xl bg-slate-900 px-5 py-3 text-white font-medium transition
-                                    hover:bg-slate-800 hover:-translate-y-0.5 shadow-lg"
+                                    hover:bg-slate-800 hover:-translate-y-0.5 shadow-lg cursor-pointer"
                         >
                             <FaGithub size={20} />
                             Continue with GitHub

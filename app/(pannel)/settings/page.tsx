@@ -14,7 +14,7 @@ function Settings() {
     const { data: githubUser } = useGithubUser(username)
 
     return (
-        <div className="px-5 lg:py-5">
+        <div className="px-5 pb-5 lg:py-5">
             <div className="mb-5 lg:mb-8 flex items-start justify-between">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight">Settings</h1>

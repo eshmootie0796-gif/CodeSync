@@ -23,7 +23,7 @@ function SideBar({ className }: SideBarProps) {
   if (loading) return <div>loading...</div>
 
   return (
-    <aside className={cn("flex h-screen w-72 shrink-0 flex-col border-r border-zinc-200 bg-white dark:border-white/5 dark:bg-linear-to-b dark:from-[#0D1117] dark:to-[#090C10]", className)}>
+    <aside className={cn("flex h-screen shrink-0 flex-col border-r border-zinc-200 bg-white dark:border-white/5 dark:bg-linear-to-b dark:from-[#0D1117] dark:to-[#090C10]", className)}>
       <div className="border-b border-zinc-200 px-6 py-7 dark:border-white/5">
         <div className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10">

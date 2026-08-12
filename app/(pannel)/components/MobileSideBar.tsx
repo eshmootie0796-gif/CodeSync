@@ -4,7 +4,7 @@ import SideBar from "./SideBar";
 
 function MobileSideBar() {
     return (
-        <div className="md:hidden">
+        <div className="lg:hidden">
             <Sheet>
                 <SheetTrigger>
                     <div className="rounded-xl border border-zinc-200 p-2 dark:border-white/10">

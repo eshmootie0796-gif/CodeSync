@@ -7,12 +7,9 @@ import { useTaskStore } from "@/store/tasksStore"
 function AddTask() {
     const addTask = useTaskStore((state) => state.addTask)
     const [title, setTitle] = useState("")
-
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
-
         if (!title.trim()) return
-
         addTask(title.trim())
         setTitle("")
     }

@@ -8,4 +8,5 @@ export interface Repo {
     description: string | null
     language: string | null
     private: boolean
+    updated_at:string
 }

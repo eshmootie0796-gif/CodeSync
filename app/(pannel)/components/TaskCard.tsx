@@ -7,32 +7,15 @@ import { useCallback, useRef, useState } from "react"
 
 interface TaskCardProps {
     task: Task
-    onStatusChange: (
-        taskId: string,
-        status: Task["status"]
-    ) => void
-    onEdit: (
-        taskId: string,
-        title: string
-    ) => void
-    onDelete: (
-        taskId: string
-    ) => void
+    onStatusChange: (taskId: string, status: Task["status"]) => void
+    onEdit: (taskId: string, title: string) => void
+    onDelete: (taskId: string) => void
 }
 
-function TaskCard({
-    task,
-    onStatusChange,
-    onEdit,
-    onDelete,
-}: TaskCardProps) {
-
+function TaskCard({ task, onStatusChange, onEdit, onDelete }: TaskCardProps) {
     const startX = useRef(0)
     const startY = useRef(0)
-    const cardPosition = useRef({
-        x: 0, y: 0,
-    })
-
+    const cardPosition = useRef({ x: 0, y: 0, })
     const [position, setPosition] = useState({ x: 0, y: 0 })
     const [isDragging, setIsDragging] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
@@ -64,12 +47,7 @@ function TaskCard({
                 setPosition({ x: 0, y: 0 })
                 setIsDragging(false)
             }
-        },
-        [
-            onStatusChange,
-            task.id,
-        ]
-    )
+        },[onStatusChange, task.id])
 
     const binding = useDnd(handleDrag)
 
@@ -109,7 +87,6 @@ function TaskCard({
                 }
             `}
         >
-
             <div className="flex flex-col gap-3">
                 <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0 flex-1">
@@ -117,89 +94,52 @@ function TaskCard({
                             <input
                                 autoFocus
                                 value={editTitle}
-                                onChange={(e) =>
-                                    setEditTitle(
-                                        e.target.value
-                                    )
-                                }
-                                onPointerDown={(e) =>
-                                    e.stopPropagation()
-                                }
+                                onChange={(e) =>setEditTitle( e.target.value)}
+                                onPointerDown={(e) => e.stopPropagation()}
                                 onKeyDown={(e) => {
-
-                                    if (
-                                        e.key === "Enter"
-                                    ) {
+                                    if (e.key === "Enter") {
                                         handleEditSave()
                                     }
-
-                                    if (
-                                        e.key === "Escape"
-                                    ) {
+                                    if (e.key === "Escape") {
                                         handleEditCancel()
                                     }
                                 }}
                                 className="w-full rounded-md border bg-background px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-emerald-500"
                             />
-
                         ) : (
 
                             <>
-                                <h3 className="truncate font-medium">
-                                    {task.title}
-                                </h3>
-
-                                {task.description && (
-                                    <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
-                                        {task.description}
-                                    </p>
-                                )}
+                                <h3 className="truncate font-medium">{task.title}</h3>
+                                {task.description && ( <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{task.description}</p> )}
                             </>
-
                         )}
-
                     </div>
                     <div className="flex shrink-0 gap-1">
                         {isEditing ? (
                             <>
                                 <button
                                     type="button"
-                                    onPointerDown={(e) =>
-                                        e.stopPropagation()
-                                    }
-                                    onClick={
-                                        handleEditSave
-                                    }
+                                    onPointerDown={(e) =>e.stopPropagation()}
+                                    onClick={ handleEditSave}
                                     className="rounded-md p-1.5 text-muted-foreground transition hover:text-emerald-500"
-                                    aria-label="Save task"
                                 >
                                     <Check className="h-4 w-4" />
                                 </button>
                                 <button
                                     type="button"
-                                    onPointerDown={(e) =>
-                                        e.stopPropagation()
-                                    }
-                                    onClick={
-                                        handleEditCancel
-                                    }
+                                    onPointerDown={(e) =>e.stopPropagation()}
+                                    onClick={handleEditCancel}
                                     className="rounded-md p-1.5 text-muted-foreground transition hover:text-red-500"
-                                    aria-label="Cancel edit"
                                 >
                                     <X className="h-4 w-4" />
                                 </button>
                             </>
-
                         ) : (
                             <>
                                 <button
                                     type="button"
-                                    onPointerDown={(e) =>
-                                        e.stopPropagation()
-                                    }
-                                    onClick={
-                                        handleEditStart
-                                    }
+                                    onPointerDown={(e) => e.stopPropagation()}
+                                    onClick={handleEditStart}
                                     className="rounded-md p-1.5 text-muted-foreground transition hover:text-emerald-500"
                                     aria-label="Edit task"
                                 >
@@ -207,14 +147,8 @@ function TaskCard({
                                 </button>
                                 <button
                                     type="button"
-                                    onPointerDown={(e) =>
-                                        e.stopPropagation()
-                                    }
-                                    onClick={() =>
-                                        onDelete(
-                                            task.id
-                                        )
-                                    }
+                                    onPointerDown={(e) =>e.stopPropagation()}
+                                    onClick={() =>onDelete(task.id)}
                                     className="rounded-md p-1.5 text-muted-foreground transition hover:text-red-500"
                                     aria-label="Delete task"
                                 >
@@ -223,25 +157,14 @@ function TaskCard({
                             </>
 
                         )}
-
                     </div>
-
                 </div>
-
-                {/* Status button */}
 
                 {task.status === "todo" && (
                     <button
                         type="button"
-                        onPointerDown={(e) =>
-                            e.stopPropagation()
-                        }
-                        onClick={() =>
-                            onStatusChange(
-                                task.id,
-                                "in-progress"
-                            )
-                        }
+                        onPointerDown={(e) => e.stopPropagation()}
+                        onClick={() =>onStatusChange( task.id,"in-progress")}
                         className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90"
                     >
                         <Play className="h-4 w-4" />
@@ -252,15 +175,8 @@ function TaskCard({
                 {task.status === "in-progress" && (
                     <button
                         type="button"
-                        onPointerDown={(e) =>
-                            e.stopPropagation()
-                        }
-                        onClick={() =>
-                            onStatusChange(
-                                task.id,
-                                "completed"
-                            )
-                        }
+                        onPointerDown={(e) => e.stopPropagation()}
+                        onClick={() => onStatusChange(task.id,"completed")}
                         className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-emerald-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-emerald-600"
                     >
                         <Check className="h-4 w-4" />

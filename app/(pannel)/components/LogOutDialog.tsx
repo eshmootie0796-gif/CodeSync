@@ -8,8 +8,9 @@ function LogOutDialog() {
     return (
         <AlertDialog>
             <AlertDialogTrigger>
-                <div className=" rounded-xl bg-emerald-600 px-4 py-2 font-semibold text-white shadow-lg transition-all hover:scale-105 cursor-pointer duration-300 hover:bg-emerald-500 shadow-emerald-500/30"
-                >Logout</div>
+                <div className=" rounded-xl bg-emerald-600 px-4 py-2 font-semibold text-white shadow-lg transition-all hover:scale-105 cursor-pointer duration-300 hover:bg-emerald-500 shadow-emerald-500/30">
+                Logout
+                </div>
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>

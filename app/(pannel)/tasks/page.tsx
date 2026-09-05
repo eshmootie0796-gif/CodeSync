@@ -8,10 +8,7 @@ function Tasks() {
     const updateTask = useTaskStore((state) => state.updateTask)
     const deleteTask = useTaskStore((state) => state.deleteTask)
 
-    const handleStatusChange = (
-        id: string,
-        status: "todo" | "in-progress" | "completed"
-    ) => {
+    const handleStatusChange = (id: string, status: "todo" | "in-progress" | "completed") => {
         updateTask(id, { status })
     }
 

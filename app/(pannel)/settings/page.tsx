@@ -1,12 +1,12 @@
 'use client'
 
 import { Palette, GitBranch, LogOutIcon, Link2 } from "lucide-react"
-import SettingsCard from "@/components/Custome/SettingsCard"
+import SettingsCard from "@/app/(pannel)/components/SettingsCard"
 import ToggleTheme from "@/components/Custome/ToggleTheme"
 import Link from "next/link"
 import { useSession } from "next-auth/react"
 import useGithubUser from "@/hooks/github/useGithubUser"
-import LogOutDialog from "@/components/Custome/LogOutDialog"
+import LogOutDialog from "@/app/(pannel)/components/LogOutDialog"
 
 function Settings() {
     const { data: session } = useSession()
@@ -29,7 +29,6 @@ function Settings() {
                 >
                     <div className="flex items-center justify-between">
                         <span className="font-medium">Theme</span>
-
                         <ToggleTheme />
                     </div>
                 </SettingsCard>
@@ -51,7 +50,8 @@ function Settings() {
                                         target="_blank"
                                         className="flex gap-1.5"
                                     >
-                                        <Link2 /> Open
+                                        <Link2 />
+                                        Open
                                     </Link>
                                 </div>
                         }

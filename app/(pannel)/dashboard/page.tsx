@@ -1,7 +1,7 @@
 'use client'
 
 import { FolderKanban, GitBranch, Users, UserPlus } from "lucide-react"
-import StatsCard from "@/components/Custome/StatsCard"
+import StatsCard from "@/app/(pannel)/components/StatsCard"
 import { useSession } from "next-auth/react"
 import useGithubUser from "@/hooks/github/useGithubUser"
 import { ChartPie } from "../components/PieChart"

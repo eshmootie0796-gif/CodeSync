@@ -1,6 +1,6 @@
 import { Repo } from "@/types/RepoType"
 
-async function getRepoLanguages(username: string): Promise<Repo> {
+async function getRepoLanguages(username: string): Promise<Repo[]> {
     const response = await fetch(`https://api.github.com/users/${username}/repos`)
 
     if (!response.ok) {

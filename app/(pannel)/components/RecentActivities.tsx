@@ -52,19 +52,14 @@ function RecentActivities() {
 
     return (
         <div
-            className="group h-140 flex flex-col overflow-hidden my-10 w-full  rounded-3xl border
-            backdrop-blur-xl p-7 border-emerald-400/40 shadow-[0_0_50px_rgba(16,185,129,0.12)]"
+            className="group h-140 flex flex-col overflow-hidden my-10 w-full rounded-3xl border backdrop-blur-xl p-7 border-emerald-400/40 
+            shadow-[0_0_50px_rgba(16,185,129,0.12)]"
         >
             <div className="mb-5">
-                <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
-                    Recent Activities
-                </h2>
-
-                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                    Your latest GitHub activity
+                <h2 className="text-xl font-semibold text-slate-900 dark:text-white"> Recent Activities</h2>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Your latest GitHub activity
                 </p>
             </div>
-
             {isLoading && (
                 <div className="space-y-4 ">
                     {[1, 2, 3, 4, 5].map((item) => (
@@ -73,7 +68,6 @@ function RecentActivities() {
                             className="flex items-center gap-8 animate-pulse"
                         >
                             <div className="h-9 w-9 rounded-xl bg-slate-200 dark:bg-slate-800" />
-
                             <div className="flex-1 space-y-7">
                                 <div className="h-3 w-40 rounded bg-slate-200 dark:bg-slate-800" />
                                 <div className="h-2.5 w-28 rounded bg-slate-200 dark:bg-slate-800" />
@@ -82,14 +76,12 @@ function RecentActivities() {
                     ))}
                 </div>
             )}
-
             {!isLoading && (
                 <div className="flex-1 overflow-y-auto">
                     {events?.map((event, index) => (
                         <div
                             key={event.id}
-                            className={`group/activity flex items-start gap-4 px-2 py-3 transition-all
-                            hover:bg-emerald-400/4
+                            className={`group/activity flex items-start gap-4 px-2 py-3 transition-all hover:bg-emerald-400/4
                             ${index !== 0
                                     ? "border-t border-slate-200/70 dark:border-slate-700/50"
                                     : ""
@@ -105,31 +97,19 @@ function RecentActivities() {
                             </div>
 
                             <div className="min-w-0 flex-1">
-                                <p className="text-sm font-medium text-slate-800 dark:text-slate-100">
-                                    {getEventMessage(event)}
-                                </p>
-
-                                <p className="mt-1 truncate text-xs text-slate-500 dark:text-slate-400">
-                                    {event.repo.name}
-                                </p>
-
+                                <p className="text-sm font-medium text-slate-800 dark:text-slate-100">{getEventMessage(event)} </p>
+                                <p className="mt-1 truncate text-xs text-slate-500 dark:text-slate-400">{event.repo.name} </p>
                                 <p className="mt-1 text-[11px] text-slate-400 dark:text-slate-500">
-                                    {formatDistanceToNow(new Date(event.created_at), {
-                                        addSuffix: true,
-                                    })}
+                                    {formatDistanceToNow(new Date(event.created_at), {addSuffix: true,})}
                                 </p>
                             </div>
                         </div>
                     ))}
                 </div>
             )}
-
-            {/* Empty */}
             {!isLoading && events?.length === 0 && (
                 <div className="py-8 text-center">
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
-                        No recent activities
-                    </p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400"> No recent activities </p>
                 </div>
             )}
         </div>

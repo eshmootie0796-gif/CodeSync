@@ -28,13 +28,11 @@ function Projects() {
     const filteredProjects = [...projects]
         .filter((project) => {
             const query = searchQuery.toLowerCase()
-
             const matchesSearch =
                 !query ||
                 project.name.toLowerCase().includes(query) ||
                 project.description?.toLowerCase().includes(query) === true ||
                 project.language?.toLowerCase().includes(query) === true
-
             const matchesLanguage =
                 language === "All" ||
                 project.language === language
@@ -45,11 +43,9 @@ function Projects() {
             if (sortBy === "name") {
                 return a.name.localeCompare(b.name)
             }
-
             if (sortBy === "stars") {
                 return b.stargazers_count - a.stargazers_count
             }
-
             if (sortBy === "date") {
                 return (
                     new Date(b.updated_at).getTime() -
@@ -58,25 +54,17 @@ function Projects() {
             }
         })
 
-
     if (!projects || isError) {
         return (
             <div className="flex min-h-[70vh] items-center justify-center">
                 <div className="text-center">
                     <FaGithub className="mx-auto h-12 w-12 text-emerald-500" />
-
-                    <h1 className="mt-4 text-2xl font-bold">
-                        Unable to load projects
-                    </h1>
-
-                    <p className="mt-2 text-muted-foreground">
-                        Please try again later.
-                    </p>
+                    <h1 className="mt-4 text-2xl font-bold">Unable to load projects</h1>
+                    <p className="mt-2 text-muted-foreground"> Please try again later.</p>
                 </div>
             </div>
         )
     }
-
     return (
         <div className="min-h-screen px-5 pt-2 pb-5 lg:py-5">
             <div className="mb-8 flex flex-col justify-between ">
@@ -97,7 +85,6 @@ function Projects() {
                             className="h-full w-100 md:w-400 bg-transparent px-3 text-sm outline-none placeholder:text-muted-foreground"
                         />
                     </div>
-
                     <button
                         type="submit"
                         className="flex h-11 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 text-sm font-medium text-white shadow-[0_0_20px_rgba(16,185,129,0.15)] transition hover:bg-emerald-600 hover:shadow-[0_0_25px_rgba(16,185,129,0.25)]"
@@ -105,7 +92,6 @@ function Projects() {
                         <Search className="h-4 w-4" />
                         Search
                     </button>
-
                     <div className="flex gap-5">
                         <div>
                             <FilterSelect
@@ -114,7 +100,6 @@ function Projects() {
                                 onChange={setSortBy}
                             />
                         </div>
-
                         <FilterSelect
                             value={language}
                             options={["All", ...Object.keys(languages)]}
@@ -146,13 +131,8 @@ function Projects() {
             {!isLoading && filteredProjects.length === 0 && (
                 <div className="flex h-100 lg:h-130 items-center justify-center rounded-2xl border border-dashed border-emerald-400/20 bg-emerald-500/2">
                     <div className="text-center">
-                        <p className="font-medium">
-                            No projects found
-                        </p>
-
-                        <p className="mt-1 text-sm text-muted-foreground">
-                            Try searching for another project.
-                        </p>
+                        <p className="font-medium"> No projects found </p>
+                        <p className="mt-1 text-sm text-muted-foreground"> Try searching for another project. </p>
                     </div>
                 </div>
             )}

@@ -16,10 +16,7 @@ function ProjectCard({ project }: ProjectCardProps) {
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-emerald-400/20 bg-emerald-500/10">
                         <Code2 className="h-5 w-5 text-emerald-500" />
                     </div>
-
-                    <h2 className="mt-2 truncate text-lg font-semibold">
-                        {project.name}
-                    </h2>
+                    <h2 className="mt-2 truncate text-lg font-semibold">{project.name}</h2>
                 </div>
             </div>
 

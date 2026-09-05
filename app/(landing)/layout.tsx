@@ -1,5 +1,3 @@
-import Header from "@/app/(landing)/components/header";
-
 export default function RoutesLayout({
   children,
 }: {
@@ -7,7 +5,6 @@ export default function RoutesLayout({
 }) {
   return (
     <>
-      <Header />
       <main >{children}</main>
     </>
   );

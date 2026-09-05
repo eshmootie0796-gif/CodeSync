@@ -9,7 +9,6 @@ import Image from "next/image"
 function About() {
     const { resolvedTheme } = useTheme()
     const isDark = resolvedTheme === "dark"
-
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
@@ -94,58 +93,24 @@ function About() {
 export default About
 
 
-function FeatureCard({
-    icon,
-    title,
-    description,
-}: {
-    icon: React.ReactNode
+function FeatureCard({icon, title, description}: 
+    {icon: React.ReactNode 
     title: string
-    description: string
-}) {
+    description: string}) {
     return (
         <div
-            className="
-            group
-            rounded-2xl
-            border
-            border-slate-200
-            dark:border-slate-800
-            bg-white/70
-            dark:bg-slate-900/60
-            backdrop-blur-md
-            p-5
-            transition-all
-            duration-300
-            hover:-translate-y-1
-            hover:border-emerald-500/30
-            hover:shadow-xl"
+            className=" group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 backdrop-blur-md p-5
+            transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-xl"
         >
-
             <div className="flex gap-4">
                 <div
-                    className="
-                    flex
-                    h-12
-                    w-12
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-emerald-500/10
-                    text-emerald-500
-                    transition
-                    group-hover:scale-110"
+                    className=" flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-500 transition group-hover:scale-110"
                 >
                     {icon}
                 </div>
                 <div>
-                    <h3 className="font-semibold text-slate-900 dark:text-white">
-                        {title}
-                    </h3>
-
-                    <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
-                        {description}
-                    </p>
+                    <h3 className="font-semibold text-slate-900 dark:text-white">{title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">{description}</p>
                 </div>
 
             </div>

@@ -28,23 +28,8 @@ function Cta() {
                     <div className="mt-10">
                         <Link
                             href="/login"
-                            className="
-                            inline-flex
-                            items-center
-                            rounded-xl
-                            bg-emerald-600
-                            px-8
-                            py-4
-                            text-base
-                            font-semibold
-                            text-white
-                            shadow-lg
-                            transition-all
-                            duration-300
-                            hover:scale-105
-                            hover:bg-emerald-500
-                            hover:shadow-emerald-500/30
-                            "
+                            className=" inline-flex items-center rounded-xl bg-emerald-600 px-8 py-4 text-base font-semibold text-white shadow-lg
+                            transition-all duration-300 hover:scale-105 hover:bg-emerald-500 hover:shadow-emerald-500/30"
                         >
                             Get Started Free →
                         </Link>

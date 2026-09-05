@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from "@/utils/cn";
-import SidebarOption from "@/components/Custome/SidebarOption";
+import SidebarOption from "@/app/(pannel)/components/SidebarOption";
 import { Code2, FolderGit2, LayoutDashboard, ListTodo, Settings, UserRound, } from "lucide-react";
 import useCurrentUser from "@/hooks/session/useCurrentUser";
 import Link from "next/link";
@@ -32,7 +32,6 @@ function SideBar({ className }: SideBarProps) {
         <div className="border-b border-zinc-200 px-6 py-7 dark:border-white/5">
           <div className="flex items-center gap-3">
             <div className="h-11 w-11 animate-pulse rounded-xl bg-emerald-500/10" />
-
             <div className="space-y-2">
               <div className="h-4 w-20 animate-pulse rounded-md bg-zinc-200 dark:bg-white/10" />
               <div className="h-3 w-28 animate-pulse rounded-md bg-zinc-200 dark:bg-white/10" />
@@ -46,7 +45,6 @@ function SideBar({ className }: SideBarProps) {
               className="flex h-11 items-center gap-5 rounded-xl px-3"
             >
               <div className="h-10 w-10 animate-pulse rounded-md bg-zinc-200 dark:bg-white/10" />
-
               <div
                 className="h-4 animate-pulse rounded-md bg-zinc-200 dark:bg-white/10"
                 style={{ width: `${65 + item * 8}px` }}

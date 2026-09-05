@@ -3,6 +3,8 @@ export interface Repo {
     name: string
     full_name: string
     html_url: string
+    forks_count: number
+    stargazers_count: number
     description: string | null
     language: string | null
     private: boolean

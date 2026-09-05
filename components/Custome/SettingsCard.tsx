@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 function SettingsCard({title,description, icon: Icon, children,className}: {title: string,description: string,icon: LucideIcon,children: ReactNode, className?: string}) {
     return (
         <section
-            className={cn("rounded-3xl border p-6 bg-white border-zinc-200 shadow-sm dark:bg-[#10151C] dark:border-white/5",
+            className={cn("rounded-3xl border p-6 border-emerald-400 dark:border-emerald-800 shadow-sm ",
                 className
             )}
         >

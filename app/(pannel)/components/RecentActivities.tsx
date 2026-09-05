@@ -4,21 +4,7 @@ import { useSession } from "next-auth/react"
 import useGithubEvents from "@/hooks/github/useGithubEvents"
 import { getEventMessage } from "@/utils/githubEvents"
 import { formatDistanceToNow } from "date-fns"
-import {
-    GitPullRequest,
-    GitCommit,
-    Star,
-    CircleDot,
-    GitFork,
-    Rocket,
-    GitBranch,
-    MessageCircle,
-    BookOpen,
-    Users,
-    Globe,
-    HandCoins,
-} from "lucide-react"
-import Link from "next/link"
+import { GitPullRequest, GitCommit, Star, CircleDot, GitFork, Rocket, GitBranch, MessageCircle, BookOpen, Users, Globe, HandCoins, } from "lucide-react"
 
 function RecentActivities() {
     const { data: session } = useSession()
@@ -27,60 +13,46 @@ function RecentActivities() {
     const { data: events, isLoading } = useGithubEvents(username)
 
     const getEventIcon = (type: string) => {
-    switch (type) {
-        case "PushEvent":
-            return <GitCommit className="h-4 w-4" />
-
-        case "PullRequestEvent":
-            return <GitPullRequest className="h-4 w-4" />
-
-        case "PullRequestReviewEvent":
-        case "PullRequestReviewCommentEvent":
-            return <MessageCircle className="h-4 w-4" />
-
-        case "CommitCommentEvent":
-        case "IssueCommentEvent":
-            return <MessageCircle className="h-4 w-4" />
-
-        case "IssuesEvent":
-            return <CircleDot className="h-4 w-4" />
-
-        case "DiscussionEvent":
-            return <MessageCircle className="h-4 w-4" />
-
-        case "ForkEvent":
-            return <GitFork className="h-4 w-4" />
-
-        case "WatchEvent":
-            return <Star className="h-4 w-4" />
-
-        case "CreateEvent":
-        case "DeleteEvent":
-            return <GitBranch className="h-4 w-4" />
-
-        case "GollumEvent":
-            return <BookOpen className="h-4 w-4" />
-
-        case "MemberEvent":
-            return <Users className="h-4 w-4" />
-
-        case "PublicEvent":
-            return <Globe className="h-4 w-4" />
-
-        case "ReleaseEvent":
-            return <Rocket className="h-4 w-4" />
-
-        case "SponsorshipEvent":
-            return <HandCoins className="h-4 w-4" />
-
-        default:
-            return <GitCommit className="h-4 w-4" />
+        switch (type) {
+            case "PushEvent":
+                return <GitCommit className="h-4 w-4" />
+            case "PullRequestEvent":
+                return <GitPullRequest className="h-4 w-4" />
+            case "PullRequestReviewEvent":
+            case "PullRequestReviewCommentEvent":
+                return <MessageCircle className="h-4 w-4" />
+            case "CommitCommentEvent":
+            case "IssueCommentEvent":
+                return <MessageCircle className="h-4 w-4" />
+            case "IssuesEvent":
+                return <CircleDot className="h-4 w-4" />
+            case "DiscussionEvent":
+                return <MessageCircle className="h-4 w-4" />
+            case "ForkEvent":
+                return <GitFork className="h-4 w-4" />
+            case "WatchEvent":
+                return <Star className="h-4 w-4" />
+            case "CreateEvent":
+            case "DeleteEvent":
+                return <GitBranch className="h-4 w-4" />
+            case "GollumEvent":
+                return <BookOpen className="h-4 w-4" />
+            case "MemberEvent":
+                return <Users className="h-4 w-4" />
+            case "PublicEvent":
+                return <Globe className="h-4 w-4" />
+            case "ReleaseEvent":
+                return <Rocket className="h-4 w-4" />
+            case "SponsorshipEvent":
+                return <HandCoins className="h-4 w-4" />
+            default:
+                return <GitCommit className="h-4 w-4" />
+        }
     }
-}
 
     return (
         <div
-            className="group h-140 relative overflow-hidden my-10 w-full  rounded-3xl border bg-white/70 dark:bg-slate-900/70
+            className="group h-140 flex flex-col overflow-hidden my-10 w-full  rounded-3xl border
             backdrop-blur-xl p-7 border-emerald-400/40 shadow-[0_0_50px_rgba(16,185,129,0.12)]"
         >
             <div className="mb-5">
@@ -94,7 +66,7 @@ function RecentActivities() {
             </div>
 
             {isLoading && (
-                <div className="space-y-4">
+                <div className="space-y-4 ">
                     {[1, 2, 3, 4, 5].map((item) => (
                         <div
                             key={item}
@@ -102,7 +74,7 @@ function RecentActivities() {
                         >
                             <div className="h-9 w-9 rounded-xl bg-slate-200 dark:bg-slate-800" />
 
-                            <div className="flex-1 space-y-2">
+                            <div className="flex-1 space-y-7">
                                 <div className="h-3 w-40 rounded bg-slate-200 dark:bg-slate-800" />
                                 <div className="h-2.5 w-28 rounded bg-slate-200 dark:bg-slate-800" />
                             </div>
@@ -112,8 +84,8 @@ function RecentActivities() {
             )}
 
             {!isLoading && (
-                <div>
-                    {events?.slice(0, 5).map((event, index) => (
+                <div className="flex-1 overflow-y-auto">
+                    {events?.map((event, index) => (
                         <div
                             key={event.id}
                             className={`group/activity flex items-start gap-4 px-2 py-3 transition-all

@@ -1,6 +1,6 @@
 'use client'
 
-import { Palette, GitBranch, LogOutIcon,Link2 } from "lucide-react"
+import { Palette, GitBranch, LogOutIcon, Link2 } from "lucide-react"
 import SettingsCard from "@/components/Custome/SettingsCard"
 import ToggleTheme from "@/components/Custome/ToggleTheme"
 import Link from "next/link"
@@ -11,11 +11,11 @@ import LogOutDialog from "@/components/Custome/LogOutDialog"
 function Settings() {
     const { data: session } = useSession()
     const username = session?.user?.username
-    const { data: githubUser } = useGithubUser(username)
+    const { data: githubUser, isLoading } = useGithubUser(username)
 
     return (
         <div className="px-5 pb-5 lg:py-5">
-            <div className="mb-5 lg:mb-8 flex items-start justify-between">
+            <div className="mb-5 lg:mb-8 mt-2 lg:mt-0 flex items-start justify-between">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
                     <p className="mt-2 max-w-xl text-muted-foreground"> Manage your account, appearance, and GitHub connection.</p>
@@ -38,17 +38,24 @@ function Settings() {
                     description="Manage your connected account."
                     icon={GitBranch}
                 >
-                    <div className="flex items-center justify-between rounded-2xl bg-muted/50 p-4">
-                        <p className="truncate">
-                            {githubUser?.html_url}
-                        </p>
-                        <Link
-                            href={githubUser?.html_url ?? "#"}
-                            target="_blank"
-                            className="flex gap-1.5"
-                        >
-                           <Link2/> Open
-                        </Link>
+                    <div >
+                        {
+                            isLoading ?
+                                <div className="h-10 w-full rounded-2xl bg-zinc-200 dark:bg-white/10" /> :
+                                <div className="flex items-center justify-between rounded-2xl bg-muted/50 p-4">
+                                    <p className="truncate">
+                                        {githubUser?.html_url}
+                                    </p>
+                                    <Link
+                                        href={githubUser?.html_url ?? "#"}
+                                        target="_blank"
+                                        className="flex gap-1.5"
+                                    >
+                                        <Link2 /> Open
+                                    </Link>
+                                </div>
+                        }
+
                     </div>
                 </SettingsCard>
                 <SettingsCard
@@ -60,7 +67,7 @@ function Settings() {
                         <p className="text-sm text-muted-foreground">
                             You can sign in again at any time.
                         </p>
-                        <LogOutDialog/>
+                        <LogOutDialog />
                     </div>
                 </SettingsCard>
             </div>

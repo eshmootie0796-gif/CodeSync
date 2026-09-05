@@ -89,7 +89,6 @@ export function ChartPie() {
                             content={
                                 <ChartLegendContent nameKey="language" />
                             }
-                            className="mt-10 flex-wrap justify-center gap-x-8 gap-y-2 text-[18px]"
                         />
                     </PieChart>
                 </ChartContainer>

@@ -52,6 +52,7 @@ function Projects() {
                     new Date(a.updated_at).getTime()
                 )
             }
+            return 0
         })
 
     if (!projects || isError) {

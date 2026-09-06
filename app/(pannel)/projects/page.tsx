@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useSession } from "next-auth/react"
-import { Search, SlidersHorizontal } from "lucide-react"
+import { Search } from "lucide-react"
 import useGithubRepos from "@/hooks/github/useGithubRepos"
 import ProjectCard from "@/app/(pannel)/components/ProjectCard"
 import languages from "language-map"
@@ -12,22 +12,14 @@ import { FaGithub } from "react-icons/fa"
 function Projects() {
     const { data: session } = useSession()
     const username = session?.user?.username
-
     const { data: projects = [], isLoading, isError } = useGithubRepos(username)
-
     const [input, setInput] = useState("")
-    const [searchQuery, setSearchQuery] = useState("")
     const [sortBy, setSortBy] = useState("name")
     const [language, setLanguage] = useState("All")
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        setSearchQuery(input.trim())
-    }
-
     const filteredProjects = [...projects]
         .filter((project) => {
-            const query = searchQuery.toLowerCase()
+            const query = input.toLowerCase().trim()
             const matchesSearch =
                 !query ||
                 project.name.toLowerCase().includes(query) ||
@@ -36,7 +28,6 @@ function Projects() {
             const matchesLanguage =
                 language === "All" ||
                 project.language === language
-
             return matchesSearch && matchesLanguage
         })
         .sort((a, b) => {
@@ -52,62 +43,52 @@ function Projects() {
                     new Date(a.updated_at).getTime()
                 )
             }
+
             return 0
         })
 
-    if (!projects || isError) {
+    if (isError) {
         return (
             <div className="flex min-h-[70vh] items-center justify-center">
                 <div className="text-center">
                     <FaGithub className="mx-auto h-12 w-12 text-emerald-500" />
-                    <h1 className="mt-4 text-2xl font-bold">Unable to load projects</h1>
+                    <h1 className="mt-4 text-2xl font-bold"> Unable to load projects</h1>
                     <p className="mt-2 text-muted-foreground"> Please try again later.</p>
                 </div>
             </div>
         )
     }
+
     return (
         <div className="min-h-screen px-5 pt-2 pb-5 lg:py-5">
-            <div className="mb-8 flex flex-col justify-between ">
+            <div className="mb-8 flex flex-col justify-between">
                 <div className="mb-4 lg:mb-7">
                     <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
                     <p className="mt-1 text-sm text-muted-foreground">Your GitHub repositories.</p>
                 </div>
-                <form
-                    onSubmit={handleSubmit}
-                    className="mt-5 flex w-full flex-col gap-5 lg:gap-3 lg:mt-0 lg:flex-row lg:items-center"
-                >
+                <div className="mt-5 flex w-full flex-col gap-5 lg:mt-0 lg:flex-row lg:items-center lg:gap-3">
                     <div className="flex h-11 w-full min-w-0 items-center rounded-xl border border-emerald-400/30 bg-white/70 px-3 shadow-[0_0_25px_rgba(16,185,129,0.06)] backdrop-blur-xl transition focus-within:border-emerald-400/60 focus-within:ring-2 focus-within:ring-emerald-500/20 dark:bg-slate-900/70">
                         <Search className="h-4 w-4 shrink-0 text-emerald-500" />
                         <input
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             placeholder="Looking for your projects?"
-                            className="h-full w-100 md:w-400 bg-transparent px-3 text-sm outline-none placeholder:text-muted-foreground"
+                            className="h-full w-full bg-transparent px-3 text-sm outline-none placeholder:text-muted-foreground"
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className="flex h-11 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 text-sm font-medium text-white shadow-[0_0_20px_rgba(16,185,129,0.15)] transition hover:bg-emerald-600 hover:shadow-[0_0_25px_rgba(16,185,129,0.25)]"
-                    >
-                        <Search className="h-4 w-4" />
-                        Search
-                    </button>
                     <div className="flex gap-5">
-                        <div>
-                            <FilterSelect
-                                value={sortBy}
-                                options={["name", "stars", "date"]}
-                                onChange={setSortBy}
-                            />
-                        </div>
+                        <FilterSelect
+                            value={sortBy}
+                            options={["name", "stars", "date"]}
+                            onChange={setSortBy}
+                        />
                         <FilterSelect
                             value={language}
                             options={["All", ...Object.keys(languages)]}
                             onChange={setLanguage}
                         />
                     </div>
-                </form>
+                </div>
             </div>
             {isLoading && (
                 <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
@@ -130,10 +111,14 @@ function Projects() {
                 </div>
             )}
             {!isLoading && filteredProjects.length === 0 && (
-                <div className="flex h-100 lg:h-130 items-center justify-center rounded-2xl border border-dashed border-emerald-400/20 bg-emerald-500/2">
+                <div className="flex h-100 items-center justify-center rounded-2xl border border-dashed border-emerald-400/20 bg-emerald-500/2 lg:h-130">
                     <div className="text-center">
-                        <p className="font-medium"> No projects found </p>
-                        <p className="mt-1 text-sm text-muted-foreground"> Try searching for another project. </p>
+                        <p className="font-medium">
+                            No projects found
+                        </p>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                            Try searching for another project.
+                        </p>
                     </div>
                 </div>
             )}

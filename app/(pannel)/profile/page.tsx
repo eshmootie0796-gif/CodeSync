@@ -85,8 +85,8 @@ function Profile() {
     const popularRepos = [...(repos ?? [])].sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0, 6)
 
     return (
-        <div className="min-h-screen px-5 pb-10 pt-5">
-            <div className="mx-auto max-w-6xl">
+        <div className="min-h-screen px-5 pb-10 pt-5 lg:py-5">
+            <div className="w-full max-w-6xl">
                 <div className="mb-6">
                     <h1 className="text-3xl font-bold tracking-tight">Profile</h1>
                     <p className="mt-1 text-sm text-muted-foreground">Your GitHub profile and popular repositories.</p>

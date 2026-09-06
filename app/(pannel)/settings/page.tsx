@@ -41,7 +41,7 @@ function Settings() {
                         {
                             isLoading ?
                                 <div className="h-10 w-full rounded-2xl bg-zinc-200 dark:bg-white/10" /> :
-                                <div className="flex items-center justify-between rounded-2xl bg-muted/50 p-4">
+                                <div className="flex items-center justify-between rounded-2xl bg-muted/50 gap-3 p-4">
                                     <p className="truncate">
                                         {githubUser?.html_url}
                                     </p>

@@ -12,10 +12,10 @@ import { FaGithub } from "react-icons/fa"
 function Dashboard() {
     const { data: session } = useSession()
     const username = session?.user?.username
-    const { data: githubUser,isError } = useGithubUser(username)
+    const { data: githubUser, isError } = useGithubUser(username)
     const tasks = useTaskStore((state) => state.tasks)
 
-     if (!githubUser || isError) {
+    if (!githubUser || isError) {
         return (
             <div className="flex min-h-[70vh] items-center justify-center">
                 <div className="text-center">
@@ -35,22 +35,27 @@ function Dashboard() {
                     <p className="mt-2 max-w-xl text-muted-foreground"> View your Github porfolio in one look.</p>
                 </div>
             </div>
-            <div className="grid grid-cols-2 gap-10 lg:grid-cols-4">
+            <div
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+            >
                 <StatsCard
                     title="Following"
                     amount={githubUser?.following}
                     icon={UserPlus}
                 />
+
                 <StatsCard
                     title="Follower"
                     amount={githubUser?.followers}
                     icon={Users}
                 />
+
                 <StatsCard
                     title="Projects"
                     amount={githubUser?.public_repos}
                     icon={GitBranch}
                 />
+
                 <StatsCard
                     title="Completed Tasks"
                     amount={tasks.length}

@@ -102,7 +102,14 @@ function Projects() {
                 </div>
             )}
             {!isLoading && filteredProjects.length > 0 && (
-                <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                <div
+                    className="
+            grid gap-5
+            grid-cols-1
+            sm:grid-cols-2
+            [@media(min-width:900px)]:grid-cols-3
+        "
+                >
                     {filteredProjects.map((project) => (
                         <ProjectCard
                             key={project.id}
@@ -111,6 +118,7 @@ function Projects() {
                     ))}
                 </div>
             )}
+
             {!isLoading && filteredProjects.length === 0 && (
                 <div className="flex h-100 items-center justify-center rounded-2xl border border-dashed border-emerald-400/20 bg-emerald-500/2 lg:h-130">
                     <div className="text-center">

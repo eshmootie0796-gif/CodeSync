@@ -72,26 +72,25 @@ export function ChartPie() {
             ) : (
                 <ChartContainer
                     config={chartConfig}
-                    className="mx-auto h-100 w-full max-w-105"
+                    className="mx-auto aspect-square w-full max-w-70 sm:max-w-[320px] md:max-w-90 lg:max-w-100 xl:max-w-110"
                 >
-                    <PieChart className="mt-5">
+                    <PieChart>
                         <Pie
                             data={chartData}
                             dataKey="count"
                             nameKey="language"
-                            innerRadius={95}
-                            outerRadius={145}
+                            innerRadius="45%"
+                            outerRadius="70%"
                             paddingAngle={3}
                             strokeWidth={0}
                         />
 
                         <ChartLegend
-                            content={
-                                <ChartLegendContent nameKey="language" />
-                            }
+                            content={<ChartLegendContent nameKey="language" />}
                         />
                     </PieChart>
                 </ChartContainer>
+
             )}
         </div>
     )

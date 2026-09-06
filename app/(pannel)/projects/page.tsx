@@ -86,6 +86,7 @@ function Projects() {
                             value={language}
                             options={["All", ...Object.keys(languages)]}
                             onChange={setLanguage}
+                            searchable
                         />
                     </div>
                 </div>
@@ -113,12 +114,8 @@ function Projects() {
             {!isLoading && filteredProjects.length === 0 && (
                 <div className="flex h-100 items-center justify-center rounded-2xl border border-dashed border-emerald-400/20 bg-emerald-500/2 lg:h-130">
                     <div className="text-center">
-                        <p className="font-medium">
-                            No projects found
-                        </p>
-                        <p className="mt-1 text-sm text-muted-foreground">
-                            Try searching for another project.
-                        </p>
+                        <p className="font-medium"> No projects found</p>
+                        <p className="mt-1 text-sm text-muted-foreground"> Try searching for another project.</p>
                     </div>
                 </div>
             )}

@@ -99,12 +99,12 @@ function FeatureCard({icon, title, description}:
     description: string}) {
     return (
         <div
-            className=" group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 backdrop-blur-md p-5
+            className="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 backdrop-blur-md py-5 px-3
             transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-xl"
         >
-            <div className="flex gap-4">
+            <div className="flex gap-3">
                 <div
-                    className=" flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-500 transition group-hover:scale-110"
+                    className=" flex h-12 w-12 p-3 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-500 transition group-hover:scale-110"
                 >
                     {icon}
                 </div>
